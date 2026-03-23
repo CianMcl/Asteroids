@@ -16,6 +16,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    score = 0
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -45,6 +46,7 @@ def main():
             if rock.collides_with(ship):
                 log_event("player_hit")
                 print("Game over!")
+                print(f"You destroyed {score} asteroids!")
                 sys.exit()
         
         for rock in asteroids:
@@ -53,6 +55,7 @@ def main():
                     log_event("asteroid_shot")
                     rock.split()
                     shot.kill()
+                    score += 1
 
         for thing in drawable:
             thing.draw(screen)
